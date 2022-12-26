@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   s.author           = { 'MC' => '562863544@qq.com' }
  
   s.source           = { :git => 'https://github.com/mancongiOS/MCToast.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.1'
  
-  s.swift_version = '5.0'
+  s.swift_version = '5.3'
   
   s.source_files = 'MCToast/Classes/**/*'
   
@@ -28,3 +28,4 @@ Pod::Spec.new do |s|
    s.dependency 'lottie-ios'
 
 end
+

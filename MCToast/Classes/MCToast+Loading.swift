@@ -65,7 +65,7 @@ extension UIResponder {
     ///   - duration: 持续时间
     ///   - respond: 交互类型
     ///   - callback: 隐藏的回调
-    public static func mc_loading(animation: Animation? = nil,
+    public static func mc_loading(animation: LottieAnimation? = nil,
                                animationSpeed: CGFloat = 1,
                                duration: CGFloat = 0,
                                respond: MCToast.MCToastRespond = MCToastConfig.shared.respond,
@@ -121,7 +121,7 @@ extension MCToast {
     ///   - duration: 持续时间
     ///   - respond: 交互类型
     ///   - callback: 隐藏的回调
-    public static func mc_loading(animation: Animation? = nil,
+    public static func mc_loading(animation: LottieAnimation? = nil,
                                animationSpeed: CGFloat = 1,
                                duration: CGFloat = 0,
                                respond: MCToast.MCToastRespond = MCToastConfig.shared.respond,
@@ -254,7 +254,7 @@ extension MCToast {
     ///   - respond: 交互类型
     ///   - callback: 隐藏的回调
     @discardableResult
-    fileprivate static func loading(animation: Animation? = nil,
+    fileprivate static func loading(animation: LottieAnimation? = nil,
                                animationSpeed: CGFloat,
                                duration: CGFloat,
                                respond: MCToast.MCToastRespond,
@@ -270,18 +270,18 @@ extension MCToast {
         window.addSubview(mainView)
         windows.append(window)
         
-        var animationTemp: Animation?
+        var animationTemp: LottieAnimation?
         
         if let _ = animation {
             animationTemp = animation
         } else {
             if let bundle = Bundle.getBundleWithName("ToastBundle", inPod: "MCToast"),
                 let path = bundle.path(forResource: "waiting", ofType: "json") {
-                animationTemp = Animation.filepath(path, animationCache: nil)
+                animationTemp = LottieAnimation.filepath(path, animationCache: nil)
             }
         }
         
-        let animationView = AnimationView()
+        let animationView = LottieAnimationView()
         animationView.animation = animationTemp
         animationView.loopMode = .loop
         animationView.animationSpeed = animationSpeed
