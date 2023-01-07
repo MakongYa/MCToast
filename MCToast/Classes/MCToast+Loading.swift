@@ -174,22 +174,25 @@ extension MCToast {
         let activity = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
         
         let activityX = (kToastSize.width - kToastImageSize.width) / 2
-        let activityY = ((kToastSize.height - kToastImageSize.height - 30) / 2)
+        var activityY = ((kToastSize.height - kToastImageSize.height) / 2)
         activity.frame = CGRect.init(x: activityX, y: activityY, width: kToastImageSize.width, height: kToastImageSize.height)
         activity.startAnimating()
         mainView.addSubview(activity)
         
-        
-        let label = UILabel()
-        label.text = text
-        label.font = MCToastConfig.shared.text.font
-        label.textAlignment = .center
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.clear
-        
-        
-        label.frame = CGRect(x: 5, y: activity.frame.maxY + 12, width: kToastSize.width - 10, height: 18)
-        mainView.addSubview(label)
+        if !text.isEmpty {
+            activityY = ((kToastSize.height - kToastImageSize.height - 30) / 2)
+            activity.frame = CGRect.init(x: activityX, y: activityY, width: kToastImageSize.width, height: kToastImageSize.height)
+            
+            let label = UILabel()
+            label.text = text
+            label.font = MCToastConfig.shared.text.font
+            label.textAlignment = .center
+            label.textColor = UIColor.white
+            label.backgroundColor = UIColor.clear
+            
+            label.frame = CGRect(x: 5, y: activity.frame.maxY + 12, width: kToastSize.width - 10, height: 18)
+            mainView.addSubview(label)
+        }
         
         MCToast.autoRemove(window: window, duration: duration, callback: callback)
         

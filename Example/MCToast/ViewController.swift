@@ -39,6 +39,7 @@ class ViewController: UIViewController {
         "状态-警告",
         "状态-自定义",
         "显示在状态栏",
+        "loading",
         "loading-系统",
         "loading-帧动画",
         "loading-json动画（依赖了Lottie三方库）",
@@ -107,8 +108,10 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource {
             self.mc_statusBar("有内容更新啦，赶紧看看吧")
             break
         case 8:
-            MCToast.mc_loading(duration: 0)
+            MCToast.mc_loading(text: "")
         case 9:
+            MCToast.mc_loading(duration: 0)
+        case 10:
            let images = [
                UIImage.init(named: "loading1"),
                UIImage.init(named: "loading2"),
@@ -119,22 +122,22 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource {
                UIImage.init(named: "loading7"),
            ]
            MCToast.mc_loading(imageNames: images)
-        case 10:
+        case 11:
 //            let animation = Animation.named("JSON动画")
             MCToast.mc_loading(animation: nil, animationSpeed: 1, duration: 0, respond: .default) {
                 print("取消了")
             }
             break
-        case 11:
+        case 12:
             let vc = LoadingViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 12:
+        case 13:
             MCToast.mc_text("开始上传", offset: 0, callback: {
                 MCToast.mc_loading(text: "上传中...", duration: 5, callback: {
                     MCToast.mc_success("上传完成")
                 })
             })
-        case 13:
+        case 14:
             let image = UIImage.init(named: "codesend")
             let truples = MCToast.showStatus(nil, text: "倒计时", iconImage: image, duration: 5, respond: .respond)
             
